@@ -13,13 +13,24 @@ def main():
     from stats import word_count
     from stats import count_characters
     from stats import sort
-    path_to_file = "/home/k8s/bookbot/books/frankenstein.txt"
+    import sys
+
+    # sys.argv[0] is the script name
+    # sys.argv[1] is the path to the book file
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    else:
+        path_to_file = sys.argv[1]
+
+
+    
     text = get_book_text(path_to_file)
     count = word_count(text)
     out = count_characters(text)
     set_list = sort(out)
     print("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
+    print(f"Analyzing book found at {path_to_file}...")
     print("----------- Word Count ----------")
     print(f"Found {count} total words")
     print("--------- Character Count -------")
